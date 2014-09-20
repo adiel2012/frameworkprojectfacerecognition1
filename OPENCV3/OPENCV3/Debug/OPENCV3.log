@@ -1,22 +1,8 @@
-﻿Compilación iniciada a las 20/09/2014 16:47:31.
+﻿Compilación iniciada a las 20/09/2014 19:07:35.
      1>Proyecto "D:\Adiel\ECUADOR\INVESTIGACION\OPENCV\FRAMEWORK2\OPENCV3\OPENCV3\OPENCV3.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
          D:\Instalaciones\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IC:\opencv\build\include /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.0\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\OPENCV3.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib OPENCV3.cpp
          OPENCV3.cpp
-     1>OPENCV3.cpp(12): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
-     1>OPENCV3.cpp(13): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
-     1>OPENCV3.cpp(17): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
-     1>d:\adiel\ecuador\investigacion\opencv\framework2\opencv3\opencv3\MiDetector.h(1): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
-     1>d:\adiel\ecuador\investigacion\opencv\framework2\opencv3\opencv3\MiDetector.h(2): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
-     1>d:\adiel\ecuador\investigacion\opencv\framework2\opencv3\opencv3\MiDetector.h(3): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
-     1>OPENCV3.cpp(18): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
-     1>d:\adiel\ecuador\investigacion\opencv\framework2\opencv3\opencv3\MiReconocedorFacial.h(1): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
-     1>d:\adiel\ecuador\investigacion\opencv\framework2\opencv3\opencv3\MiReconocedorFacial.h(2): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
-     1>d:\adiel\ecuador\investigacion\opencv\framework2\opencv3\opencv3\MiReconocedorFacial.h(3): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
-     1>OPENCV3.cpp(19): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
-     1>d:\adiel\ecuador\investigacion\opencv\framework2\opencv3\opencv3\AttfacesImgProvider.h(1): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
-     1>d:\adiel\ecuador\investigacion\opencv\framework2\opencv3\opencv3\AttfacesImgProvider.h(2): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
-     1>d:\adiel\ecuador\investigacion\opencv\framework2\opencv3\opencv3\AttfacesImgProvider.h(3): warning C4067: símbolos (token) inesperados después de la directiva del preprocesador; se esperaba una nueva línea
        Link:
          D:\Instalaciones\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Adiel\ECUADOR\INVESTIGACION\OPENCV\FRAMEWORK2\OPENCV3\Debug\OPENCV3.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\opencv\build\x86\vc11\lib opencv_core249d.lib opencv_imgproc249d.lib opencv_highgui249d.lib opencv_ml249d.lib opencv_video249d.lib opencv_features2d249d.lib opencv_calib3d249d.lib opencv_objdetect249d.lib opencv_contrib249d.lib opencv_legacy249d.lib opencv_flann249d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Adiel\ECUADOR\INVESTIGACION\OPENCV\FRAMEWORK2\OPENCV3\Debug\OPENCV3.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\app.res
          Debug\AssemblyInfo.obj
@@ -28,4 +14,4 @@
 
 Compilación correcta.
 
-Tiempo transcurrido 00:00:03.22
+Tiempo transcurrido 00:00:03.68

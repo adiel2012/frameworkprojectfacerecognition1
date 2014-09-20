@@ -84,14 +84,12 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="A.h" />
     <ClInclude Include="allcore.h" />
-    <ClInclude Include="AttfacesImgProvider.h" />
     <ClInclude Include="core.h" />
     <ClInclude Include="core_experiment.h" />
     <ClInclude Include="MiDetector.h" />
     <ClInclude Include="MiReconocedorFacial.h" />
-    <ClInclude Include="opencv_core.h" />
+    <ClInclude Include="Provider1.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

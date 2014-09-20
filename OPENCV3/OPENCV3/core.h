@@ -24,18 +24,15 @@ namespace core {
 		Rectangle(int ax, int ay){x=ax; y=ay;}
 
 	};
-
-	
-
 	class IFaceRecognitor
 	{
 	public:
-		int recognize(IplImage* img, Rectangle rectangle) const;
+		virtual int  recognize(IplImage* img, Rectangle rectangle) = 0;
 	};
 
 	class IFaceDetector{
 	public:
-		Rectangle* detect(IplImage*) const;
+		virtual Rectangle*  detect(IplImage*) = 0;
 	};
 
 	class ClassifiedImage{
@@ -49,11 +46,25 @@ namespace core {
 		ClassifiedImage(IplImage* aimg,int a_class){img=aimg;_class=a_class;}
 	};
 
-	class IClassifiedImageProvoder{
+
+
+
+	class IClassifiedImageProvider{
 	public:
-		ClassifiedImage* getImages() {return nullptr;};
-		IClassifiedImageProvoder(){}
+		//ClassifiedImage* getImages()  const;
+		IClassifiedImageProvider(){}
+		virtual ClassifiedImage*  getImages() = 0;
+		//virtual int funcion1() ;
 	};
+
+
+
+
+
+
+
+
+
 
 }
 

@@ -1,6 +1,6 @@
-#include "core.h";
-#include "core_experiment.h";
-#include "opencv_core.h";
+#include "core.h"
+#include "core_experiment.h"
+#include "opencv_core.h"
 
 
 class MiDetector : public core::IFaceDetector{
@@ -12,7 +12,7 @@ public:
 	
 	}
 
-	core::Rectangle* detect(IplImage*){
+	virtual core::Rectangle* detect(IplImage*){
 		return nullptr;
 	}
 };

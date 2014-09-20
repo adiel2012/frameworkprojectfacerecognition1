@@ -6,7 +6,7 @@
 #ifndef _core_experimenth
 #define _core_experimenth
 
-using namespace core;
+
 
 namespace core_experiment {
 	//--------------------------------------------------------------------------------------------------
@@ -15,12 +15,12 @@ namespace core_experiment {
 	protected:
 		core::IFaceDetector* _detector;
 		core::IFaceRecognitor* _recognitor;
-		core::IClassifiedImageProvoder* _imgprovider;
+		core::IClassifiedImageProvider* _imgprovider;
 	public :
-		float* getResults() const;
+		virtual float* getResults() = 0;
 		 
 
-		IExperimenter (core::IFaceDetector* adetector,  core::IFaceRecognitor* arecognitor,core::IClassifiedImageProvoder* aimgprovider){
+		IExperimenter (core::IFaceDetector* adetector,  core::IFaceRecognitor* arecognitor,core::IClassifiedImageProvider* aimgprovider){
 		_detector = adetector;
 		_recognitor = arecognitor;
 		_imgprovider = aimgprovider;
@@ -30,8 +30,8 @@ namespace core_experiment {
 
 	class TenfoldCrossValidation: public IExperimenter{
 	public:
-		TenfoldCrossValidation(core::IFaceDetector* adetector,  core::IFaceRecognitor* arecognitor,core::IClassifiedImageProvoder* aimgprovider):IExperimenter(adetector,arecognitor,aimgprovider){}
-		float* getResults() {
+		TenfoldCrossValidation(core::IFaceDetector* adetector,  core::IFaceRecognitor* arecognitor,core::IClassifiedImageProvider* aimgprovider):IExperimenter(adetector,arecognitor,aimgprovider){}
+		virtual float* getResults() {
 
 			std::vector<int> classes;
 			std::vector<core::Rectangle> faces;
@@ -52,7 +52,7 @@ namespace core_experiment {
 				classes.push_back(imgs[i].getclass());
 				faces.push_back(rects[0]);
 			}
-
+			
 			// ordenar por clases
 			for (int i = 0; i < cantimg-1; i++)
 			{
@@ -60,9 +60,7 @@ namespace core_experiment {
 				{
 					if(classes.at(i)>classes.at(j)){
 					
-						/*classes.swap(i,j);
-						faces.swap(i,j);
-						images.swap(i,j);*/
+						
 					}
 				}
 			}
@@ -75,8 +73,8 @@ namespace core_experiment {
 
 	class HoldOutCrossValidation: public IExperimenter{
 	public:
-		HoldOutCrossValidation(core::IFaceDetector* adetector,  core::IFaceRecognitor* arecognitor,core::IClassifiedImageProvoder* aimgprovider):IExperimenter(adetector,arecognitor,aimgprovider){}
-		float* getResults() {
+		HoldOutCrossValidation(core::IFaceDetector* adetector,  core::IFaceRecognitor* arecognitor,core::IClassifiedImageProvider* aimgprovider):IExperimenter(adetector,arecognitor,aimgprovider){}
+		virtual float* getResults() {
 		
 
 			return nullptr;

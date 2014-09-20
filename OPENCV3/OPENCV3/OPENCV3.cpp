@@ -8,28 +8,29 @@
 #include <opencv/ml.h>
 
 
-//#include "core.h";
-#include "core_experiment.h";
-#include "opencv_core.h";
+
+#include "allcore.h"
 
 //#include "allcore.h";
 
-#include "MiDetector.h";
-#include "MiReconocedorFacial.h";
-#include "AttfacesImgProvider.h";
+#include "MiDetector.h"
+#include "MiReconocedorFacial.h"
+#include "Provider1.h"
 
-using namespace System;
 
 
 
 int main1();
 int adielsample();
+
+
+
 int main(array<System::String ^> ^args)
 {
 
 
 
-    Console::WriteLine(L"Hola a todos");
+    System::Console::WriteLine(L"Hola a todos");
 	return adielsample();
 
    // return main1();
@@ -37,31 +38,6 @@ int main(array<System::String ^> ^args)
 
 
 
-int adielsample(){
-
-	// esto debe hacerse con un inyector de dependencias
-	core::IFaceDetector* detector =  new MiDetector();
-	core::IFaceRecognitor* recog =  new MiReconocedorFacial();
-	core::IClassifiedImageProvoder* imgprovider =  new AttfacesImageProvider();
-
-	imgprovider->getImages();
-	return 0;
-
-	core_experiment::IExperimenter* experiment = new core_experiment::TenfoldCrossValidation(detector,recog,imgprovider);
-	float* results = experiment->getResults();
-
-	for (int i = 0; i < sizeof(results); i++)
-	{
-		Console::WriteLine(results[i]);
-	}
-
-	delete detector;
-	delete recog;
-	delete imgprovider;
-	delete [] results;
-
-	return -1;
-}
 
 int main1()
 {
@@ -116,3 +92,29 @@ int main1()
 	return 0;
 }
 
+int adielsample(){
+
+	// esto debe hacerse con un inyector de dependencias
+	core::IFaceDetector* detector =  new MiDetector();
+	core::IFaceRecognitor* recog =  new MiReconocedorFacial();
+	core::IClassifiedImageProvider* imgprovider =  new providers::AttImgProvider();
+
+	imgprovider->getImages();
+	//imgprovider->funcion1();
+	//return 0;
+
+	core_experiment::IExperimenter* experiment = new core_experiment::TenfoldCrossValidation(detector,recog,imgprovider);
+	float* results = experiment->getResults();
+
+	for (int i = 0; i < sizeof(results); i++)
+	{
+		System::Console::WriteLine(results[i]);
+	}
+
+	delete detector;
+	delete recog;
+	delete imgprovider;
+	delete [] results;
+
+	return -1;
+}

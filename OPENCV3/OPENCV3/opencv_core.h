@@ -17,5 +17,5 @@ namespace opencv_core{
 		   return nullptr;   //  FALTA POR IMPLEMENTAR
 		}
 	};
-};
+}
 #endif

@@ -1,6 +1,6 @@
-#include "core.h";
-#include "core_experiment.h";
-#include "opencv_core.h";
+#include "core.h"
+#include "core_experiment.h"
+#include "opencv_core.h"
 
 
 class MiReconocedorFacial : public core::IFaceRecognitor{
@@ -12,7 +12,7 @@ public:
 	
 	}
 
-	int recognize(IplImage* img, core::Rectangle rectangle){
+	virtual  int recognize(IplImage* img, core::Rectangle rectangle){
 	   return -1;
 	}
 
