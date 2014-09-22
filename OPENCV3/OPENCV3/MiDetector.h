@@ -15,9 +15,9 @@ public:
 
 	}
 
-	virtual core::Rectangle* detect(IplImage* img, int& cant){
+	virtual cv::Mat* detect(IplImage* img, int& cant){
 
-		std::vector<core::Rectangle*> rectangulos; 
+		std::vector<cv::Mat> rectangulos; 
 
 		//IplImage* img = cvLoadImage("C:/lena.png");
 
@@ -49,25 +49,24 @@ public:
 		
 		for (i = 0; i < (faces ? faces->total : 0); i++) {
 			CvRect *r = (CvRect *) cvGetSeqElem (faces, i);
-			rectangulos.push_back(new core::Rectangle(r->x,r->y,r->x+r->width,r->y));
+			cv::Mat face =  cv::Mat(src_gray,r);
 
+			rectangulos.push_back(face);
+
+			//rectangulos.push_back(new core::Rectangle(r->x,r->y,r->x+r->width,r->y+r->height));
+			//rectangulos.push_back(new core::Rectangle(r->x,r->y,r->x+r->width,r->y+r->height));
 			//cv::rectangle(  mat,*r, cv::Scalar(100, 100, 200));
 			//doMosaic(src_img, r->x, r->y, r->width, r->height, 20);
 		}
-		core::Rectangle* res = new core::Rectangle[faces->total];
-		int g = sizeof(res);
-		core::Rectangle* temp;
-		int pos = 0;
-		for (int i = 0; i < faces->total; i++)
+
+		cant = rectangulos.size();
+		cv::Mat* res = new cv::Mat[cant];
+		for (int i = 0; i < cant; i++)
 		{
-			temp = rectangulos[i]; 
-			res[pos].setX1(temp->getX1());
-			res[pos].setX2(temp->getX2());
-			res[pos].setY1(temp->getY1());
-			res[pos].setY2(temp->getY2());
-			pos++;
+			res[i] = rectangulos[i] ;
 		}
-		cant=pos;
+		
+		
 		return res;
 	}
 };

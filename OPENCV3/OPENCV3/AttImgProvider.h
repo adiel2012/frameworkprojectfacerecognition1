@@ -4,48 +4,77 @@
 #include "opencv_core.h"
 
 //#include <iostream>
-//using namespace System;
+using namespace System;
 using namespace System::Runtime::InteropServices;
 
 namespace providers
 {
-	class AttImgProvider : public core::IClassifiedImageProvider {
+	class AttImgProvider : public core::IClassifiedFaceProvider {
 
 	public:
-		AttImgProvider():core::IClassifiedImageProvider(){
+		AttImgProvider():core::IClassifiedFaceProvider(){
 			int g = 0;
 		}
 
 
 
-		virtual core::ClassifiedImage* getImages(int& numimages){
+		virtual core::ClassifiedImage* getImages(int& numimages, core::IFaceDetector* adetector){
 			//char* path = "";
-			int cant = 400;
-			core::ClassifiedImage* result = new core::ClassifiedImage[cant];
+			
 			int pos = 0;
+
+			std::vector<int> classes;
+			//std::vector<core::Rectangle> faces;
+			std::vector<Mat*> images;
 
 			using namespace System;
 			using namespace System::IO;
-			String^ folder =   Directory::GetCurrentDirectory()+"\\datasets\\att_faces";  // "C:\\";
-			array<String^>^ dir = Directory::GetDirectories( folder );
+			System::String^ folder =   System::IO::Directory::GetCurrentDirectory()+"\\datasets\\att_faces";  // "C:\\";
+			array<System::String^>^ dir = System::IO::Directory::GetDirectories( folder );
 			//Console::WriteLine("--== Directories inside '{0}' ==--", folder);
 			int aclass = -1;
 			for (int i=0; i<dir->Length; i++){
-				String^ subfolder =   dir[i];
+				System::String^ subfolder =   dir[i];
 				//Console::WriteLine(subfolder);
-				String^ temp = (String^)subfolder->Clone();
-				String^temp2 = temp->Substring(temp->LastIndexOf("\\")+2);
-				Console::WriteLine(temp2);
+				System::String^ temp = (System::String^)subfolder->Clone();
+				System::String^temp2 = temp->Substring(temp->LastIndexOf("\\")+2);
+				System::Console::WriteLine(temp2);
 				aclass = Convert::ToInt32(temp2)-1;
 
-				array<String^>^ file = Directory::GetFiles( subfolder );
+				array<System::String^>^ file = System::IO::Directory::GetFiles( subfolder );
 				//Console::WriteLine("--== Files inside '{0}' ==--", subfolder);
 				for (int i=0; i<file->Length; i++){
 					//Console::WriteLine("       "+file[i]);
-					result[pos].setclass(aclass);
-					result[pos].setIimage( cvLoadImage((char*)Marshal::StringToHGlobalAnsi(file[i]).ToPointer()));
-					pos++;
-					
+
+
+
+					//  deteccion
+					//for (int i = 0; i < cantimg; i++)
+					//{
+
+						IplImage* imagen = cvLoadImage((char*)Marshal::StringToHGlobalAnsi(file[i]).ToPointer());
+						int cantrect = -1;
+						Mat* rects = adetector->detect(imagen,cantrect);
+						System::Console::WriteLine(i);
+
+						if(cantrect!=1)
+						{
+							// ver que se hace sui la cantidad de caras es distinto de 1
+							//g++;
+							System::Console::WriteLine("---------------------------------------{0}",cantrect);
+						}
+						else{
+							classes.push_back(aclass);
+							//faces.push_back(rects[0]);
+							images.push_back(rects);
+						}
+					//}
+
+
+					/*result[pos].setclass(aclass);
+					result[pos].setIimage();
+					pos++;*/
+
 				}
 			}
 
@@ -54,7 +83,15 @@ namespace providers
 			for (int i=0; i<file->Length; i++)
 			Console::WriteLine(file[i]);*/
 
-			numimages= pos;
+			//int cant = 400;
+			core::ClassifiedImage* result = new core::ClassifiedImage[classes.size()];
+			for (int i = 0; i < classes.size(); i++)
+			{
+				result[i].setclass(classes[i]);
+				result[i].setIimage(images[i]);
+			}
+
+			numimages= classes.size();
 			Console::WriteLine(pos);
 			return result;
 

@@ -57,6 +57,9 @@
     <ClInclude Include="AttImgProvider.h">
       <Filter>Archivos de encabezado\imgproviders</Filter>
     </ClInclude>
+    <ClInclude Include="MiDetector2.h">
+      <Filter>Archivos de encabezado\adiel</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="app.rc">

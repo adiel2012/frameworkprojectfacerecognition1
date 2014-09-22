@@ -14,6 +14,7 @@
 //#include "allcore.h";
 
 #include "MiDetector.h"
+#include "MiDetector2.h"
 #include "MiReconocedorFacial.h"
 #include "AttImgProvider.h"
 
@@ -95,12 +96,12 @@ int main1()
 int adielsample(){
 
 	// esto debe hacerse con un inyector de dependencias
-	core::IFaceDetector* detector =  new MiDetector();
+	core::IFaceDetector* detector =  new MiDetector2();
 	core::IFaceRecognitor* recog =  new MiReconocedorFacial();
-	core::IClassifiedImageProvider* imgprovider =  new providers::AttImgProvider();
+	core::IClassifiedFaceProvider* imgprovider =  new providers::AttImgProvider();
 
 	int cantimgs = -1;
-	imgprovider->getImages(cantimgs);
+	imgprovider->getImages(cantimgs,detector);
 
 
 	

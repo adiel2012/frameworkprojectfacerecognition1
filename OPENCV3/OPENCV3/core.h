@@ -35,34 +35,35 @@ namespace core {
 	class IFaceRecognitor
 	{
 	public:
-		virtual int  recognize(IplImage* img, Rectangle rectangle) = 0;
+		virtual int  recognize(cv::Mat* img, Rectangle rectangle) = 0;
+		virtual void  train(std::vector<cv::Mat> images,std::vector<int> labels) = 0;
 	};
 
 	class IFaceDetector{
 	public:
-		virtual Rectangle*  detect(IplImage*,int& cant) = 0;
+		virtual cv::Mat*  detect(IplImage* img,int& cant) = 0;
 	};
 
 	class ClassifiedImage{
-		IplImage* img;
+		cv::Mat* img;
 		int _class;
 	public:
-		IplImage* getIimage(){return img;}
+		cv::Mat* getIimage(){return img;}
 		int getclass(){return _class;}
-		void setIimage(IplImage* value){ img = value;}
+		void setIimage(cv::Mat* value){ img = value;}
 		void setclass(int value){_class=value;}
 		ClassifiedImage(){};
-		ClassifiedImage(IplImage* aimg,int a_class){img=aimg;_class=a_class;}
+		ClassifiedImage(cv::Mat* aimg,int a_class){img=aimg;_class=a_class;}
 	};
 
 
 
 
-	class IClassifiedImageProvider{
+	class IClassifiedFaceProvider{
 	public:
 		//ClassifiedImage* getImages()  const;
-		IClassifiedImageProvider(){}
-		virtual ClassifiedImage*  getImages(int& numimages) = 0;
+		IClassifiedFaceProvider(){}
+		virtual ClassifiedImage*  getImages(int& numimages, core::IFaceDetector* adetector) = 0;
 		//virtual int funcion1() ;
 	};
 
