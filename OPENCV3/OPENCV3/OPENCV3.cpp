@@ -15,7 +15,7 @@
 
 #include "MiDetector.h"
 #include "MiReconocedorFacial.h"
-#include "Provider1.h"
+#include "AttImgProvider.h"
 
 
 
@@ -99,14 +99,16 @@ int adielsample(){
 	core::IFaceRecognitor* recog =  new MiReconocedorFacial();
 	core::IClassifiedImageProvider* imgprovider =  new providers::AttImgProvider();
 
-	imgprovider->getImages();
-	//imgprovider->funcion1();
-	//return 0;
+	int cantimgs = -1;
+	imgprovider->getImages(cantimgs);
+
+
+	
 
 	core_experiment::IExperimenter* experiment = new core_experiment::TenfoldCrossValidation(detector,recog,imgprovider);
 	float* results = experiment->getResults();
 
-	for (int i = 0; i < sizeof(results); i++)
+	for (int i = 0; i < cantimgs; i++)
 	{
 		System::Console::WriteLine(results[i]);
 	}
@@ -116,5 +118,6 @@ int adielsample(){
 	delete imgprovider;
 	delete [] results;
 
-	return -1;
+	System::Console::ReadLine();
+	return 0;
 }

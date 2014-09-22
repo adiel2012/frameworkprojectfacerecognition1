@@ -89,7 +89,7 @@
     <ClInclude Include="core_experiment.h" />
     <ClInclude Include="MiDetector.h" />
     <ClInclude Include="MiReconocedorFacial.h" />
-    <ClInclude Include="Provider1.h" />
+    <ClInclude Include="AttImgProvider.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

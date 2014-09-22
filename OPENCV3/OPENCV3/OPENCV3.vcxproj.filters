@@ -54,7 +54,7 @@
     <ClInclude Include="MiReconocedorFacial.h">
       <Filter>Archivos de encabezado\adiel</Filter>
     </ClInclude>
-    <ClInclude Include="Provider1.h">
+    <ClInclude Include="AttImgProvider.h">
       <Filter>Archivos de encabezado\imgproviders</Filter>
     </ClInclude>
   </ItemGroup>
