@@ -1,12 +1,12 @@
-﻿Compilación iniciada a las 21/09/2014 23:24:17.
+﻿Compilación iniciada a las 22/09/2014 23:29:03.
      1>Proyecto "D:\Adiel\ECUADOR\INVESTIGACION\OPENCV\FRAMEWORK2\OPENCV3\OPENCV3\OPENCV3.vcxproj" en el nodo 2 (Build destinos).
      1>ClCompile:
          D:\Instalaciones\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IC:\opencv\build\include /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.0\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _UNICODE /D UNICODE /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\OPENCV3.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib OPENCV3.cpp
          OPENCV3.cpp
-     1>d:\adiel\ecuador\investigacion\opencv\framework2\opencv3\opencv3\MiDetector.h(52): warning C4800: 'CvRect *' : forzando el valor a bool 'true' o 'false' (advertencia de rendimiento)
-     1>d:\adiel\ecuador\investigacion\opencv\framework2\opencv3\opencv3\MiDetector.h(29): warning C4101: 'c' : variable local sin referencia
+     1>d:\adiel\ecuador\investigacion\opencv\framework2\opencv3\opencv3\core.h(126): warning C4018: '<' : no coinciden signed/unsigned
      1>d:\adiel\ecuador\investigacion\opencv\framework2\opencv3\opencv3\MiDetector2.h(71): warning C4244: 'argumento' : conversión de 'double' a 'int'; posible pérdida de datos
-     1>d:\adiel\ecuador\investigacion\opencv\framework2\opencv3\opencv3\AttImgProvider.h(88): warning C4018: '<' : no coinciden signed/unsigned
+     1>d:\adiel\ecuador\investigacion\opencv\framework2\opencv3\opencv3\MiReconocedorFacial.h(27): warning C4018: '<' : no coinciden signed/unsigned
+     1>d:\adiel\ecuador\investigacion\opencv\framework2\opencv3\opencv3\AttImgProvider.h(90): warning C4018: '<' : no coinciden signed/unsigned
        Link:
          D:\Instalaciones\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Adiel\ECUADOR\INVESTIGACION\OPENCV\FRAMEWORK2\OPENCV3\Debug\OPENCV3.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\opencv\build\x86\vc11\lib opencv_core249d.lib opencv_imgproc249d.lib opencv_highgui249d.lib opencv_ml249d.lib opencv_video249d.lib opencv_features2d249d.lib opencv_calib3d249d.lib opencv_objdetect249d.lib opencv_contrib249d.lib opencv_legacy249d.lib opencv_flann249d.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Adiel\ECUADOR\INVESTIGACION\OPENCV\FRAMEWORK2\OPENCV3\Debug\OPENCV3.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 Debug\app.res
          Debug\AssemblyInfo.obj
@@ -18,4 +18,4 @@
 
 Compilación correcta.
 
-Tiempo transcurrido 00:00:04.49
+Tiempo transcurrido 00:00:03.62

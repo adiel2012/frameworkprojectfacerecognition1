@@ -44,7 +44,7 @@ namespace core_experiment {
 
 			for (int i = 0; i < cantimg; i++)
 			{
-				faces.push_back(*(imgs[i].getIimage()));
+				faces.push_back((imgs[i].getIimage()));
 				labels.push_back(imgs[i].getclass());
 			}
 

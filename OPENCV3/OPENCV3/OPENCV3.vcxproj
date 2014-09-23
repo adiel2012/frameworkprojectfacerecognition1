@@ -87,7 +87,6 @@
     <ClInclude Include="allcore.h" />
     <ClInclude Include="core.h" />
     <ClInclude Include="core_experiment.h" />
-    <ClInclude Include="MiDetector.h" />
     <ClInclude Include="MiDetector2.h" />
     <ClInclude Include="MiReconocedorFacial.h" />
     <ClInclude Include="AttImgProvider.h" />

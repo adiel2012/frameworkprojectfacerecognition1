@@ -29,7 +29,7 @@ namespace core {
 		int getY2(){return y2;};
 		void setX2(int ax2){ x2=ax2;}
 		void setY2(int ay2){ y2=ay2;}
-	
+
 
 	};
 	class IFaceRecognitor
@@ -41,19 +41,19 @@ namespace core {
 
 	class IFaceDetector{
 	public:
-		virtual cv::Mat*  detect(IplImage* img,int& cant) = 0;
+		virtual cv::Mat*  detect(cv::Mat img,int& cant, std::vector<cv::Rect> rectangles) = 0;
 	};
 
 	class ClassifiedImage{
-		cv::Mat* img;
+		cv::Mat img;
 		int _class;
 	public:
-		cv::Mat* getIimage(){return img;}
+		cv::Mat getIimage(){return img;}
 		int getclass(){return _class;}
-		void setIimage(cv::Mat* value){ img = value;}
+		void setIimage(cv::Mat value){ img = value;}
 		void setclass(int value){_class=value;}
 		ClassifiedImage(){};
-		ClassifiedImage(cv::Mat* aimg,int a_class){img=aimg;_class=a_class;}
+		ClassifiedImage(cv::Mat aimg,int a_class){img=aimg;_class=a_class;}
 	};
 
 
@@ -71,7 +71,73 @@ namespace core {
 
 
 
+	class VideoDetector{
+	private:
 
+	public:
+		void run (IFaceDetector* detector){
+
+
+			// Get the path to your CSV:
+			//			string fn_haar = string("");
+			//			string fn_csv = string("");
+			int deviceId = atoi("");
+			// These vectors hold the images and corresponding labels:
+			//std::vector<cv::Mat> images;
+			//std::vector<int> labels;
+			/*    // Read in the data (fails if no valid input filename is given, but you'll get an error message):
+			try {
+			read_csv(fn_csv, images, labels);
+			} catch (cv::Exception& e) {
+			cerr << "Error opening file \"" << fn_csv << "\". Reason: " << e.msg << endl;
+			// nothing more we can do
+			exit(1);
+			}*/
+			// Get the height from the first image. We'll need this
+			// later in code to reshape the images to their original
+			// size AND we need to reshape incoming faces to this size:
+			//int im_width = images[0].cols;
+			//int im_height = images[0].rows;
+
+
+			// That's it for learning the Face Recognition model. You now
+			// need to create the classifier for the task of Face Detection.
+			// We are going to use the haar cascade you have specified in the
+			// command line arguments:
+			//
+			//cv::CascadeClassifier haar_cascade;
+			//haar_cascade.load("");
+			// Get a handle to the Video device:
+			cv::VideoCapture cap(deviceId);
+			// Check if we can use this device at all:
+			if(!cap.isOpened()) {
+				//cerr << "Capture Device ID " << deviceId << "cannot be opened." << endl;
+				//return -1;
+			}
+			// Holds the current frame from the Video device:
+			cv::Mat frame;
+			for(;;) {
+				cap >> frame;
+				cv::Mat original = frame.clone();
+				int cant;
+				std::vector<cv::Rect> rectangles;
+				cv:: Mat* matrices = detector->detect(frame,cant,rectangles);
+
+				for (int i = 0; i < rectangles.size(); i++)
+				{
+					cv::rectangle  (original,rectangles[i], cv::Scalar(100, 100, 200));
+				}
+
+				imshow("face_recognizer", original);
+			}
+			// Show the result:
+			
+			// And display it:
+			//char key = (char) waitKey(20);
+
+		}
+
+	};
 
 
 

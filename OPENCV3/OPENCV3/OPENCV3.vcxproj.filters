@@ -22,9 +22,6 @@
     <Filter Include="Archivos de encabezado\imgproviders">
       <UniqueIdentifier>{7b5ebc36-71b8-47b4-abd3-3681a9aa9d66}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de código fuente\core">
-      <UniqueIdentifier>{6c49c7a3-a373-4647-964f-2e701b4c232b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Archivos de código fuente\imgproviders">
       <UniqueIdentifier>{0c5ca24e-8c22-4f00-afb3-e99f2af6d9cc}</UniqueIdentifier>
     </Filter>
@@ -44,9 +41,6 @@
     </ClInclude>
     <ClInclude Include="core_experiment.h">
       <Filter>Archivos de encabezado\core</Filter>
-    </ClInclude>
-    <ClInclude Include="MiDetector.h">
-      <Filter>Archivos de encabezado\adiel</Filter>
     </ClInclude>
     <ClInclude Include="allcore.h">
       <Filter>Archivos de encabezado\core</Filter>

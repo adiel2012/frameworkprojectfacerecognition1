@@ -25,7 +25,7 @@ namespace providers
 
 			std::vector<int> classes;
 			//std::vector<core::Rectangle> faces;
-			std::vector<Mat*> images;
+			std::vector<Mat> images;
 
 			using namespace System;
 			using namespace System::IO;
@@ -54,7 +54,9 @@ namespace providers
 
 						IplImage* imagen = cvLoadImage((char*)Marshal::StringToHGlobalAnsi(file[i]).ToPointer());
 						int cantrect = -1;
-						Mat* rects = adetector->detect(imagen,cantrect);
+						
+				        std::vector<cv::Rect> rectangles;
+						Mat* rects = adetector->detect(imagen,cantrect,rectangles);
 						System::Console::WriteLine(i);
 
 						if(cantrect!=1)
@@ -66,7 +68,7 @@ namespace providers
 						else{
 							classes.push_back(aclass);
 							//faces.push_back(rects[0]);
-							images.push_back(rects);
+							images.push_back(rects[0]);
 						}
 					//}
 

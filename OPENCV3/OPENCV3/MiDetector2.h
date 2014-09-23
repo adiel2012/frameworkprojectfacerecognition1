@@ -31,17 +31,17 @@ public:
 
 
 
-	virtual cv::Mat* detect(IplImage* img, int& cant){
+	virtual cv::Mat* detect(cv::Mat frame, int& cant, std::vector<cv::Rect> marco){
 
 
 
 
 		std::vector<cv::Mat> rectangulos; 
-		if (!img)
-			printf("Image can NOT Load!!!\n");
+		//if (!img)
+		//	printf("Image can NOT Load!!!\n");
 
 
-		cv::Mat frame =  cv::Mat(img, true);
+		//cv::Mat frame =  cv::Mat(img, true);
 		//IplImage*frame= img;
 
 
@@ -73,10 +73,11 @@ public:
 			
 			//rectangulos.push_back(new core::Rectangle(faces[i].x,faces[i].y,faces[i].x+faces[i].width,faces[i].y+faces[i].height));
 
-			//CvRect *r = faces[i];
+			CvRect r = faces[i];
 			cv::Mat face =  cv::Mat(frame_gray,faces[i]);
 
 			rectangulos.push_back(face);
+			marco.push_back(r);
 
 			//ellipse( frame, center, Size( faces[i].width*0.5, faces[i].height*0.5), 0, 0, 360, Scalar( 255, 0, 255 ), 4, 8, 0 );
 

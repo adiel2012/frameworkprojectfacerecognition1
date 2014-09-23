@@ -101,7 +101,7 @@ int adielsample(){
 	core::IClassifiedFaceProvider* imgprovider =  new providers::AttImgProvider();
 
 	int cantimgs = -1;
-	imgprovider->getImages(cantimgs,detector);
+	//imgprovider->getImages(cantimgs,detector);
 
 
 	
