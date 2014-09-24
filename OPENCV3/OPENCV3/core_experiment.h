@@ -50,6 +50,18 @@ namespace core_experiment {
 
 			_recognitor->train(faces,labels);
 
+
+			int im_width = imgs[0].getIimage().cols;
+            int im_height = imgs[0].getIimage().rows;
+			
+			for (int i = 0; i < labels.size(); i++)
+			{
+				cv::Mat face_resized;
+				cv::resize(faces[i], face_resized, cv::Size(im_width, im_height), 1.0, 1.0, cv::INTER_CUBIC);
+				System::Console::WriteLine(System::Convert::ToString(labels[i])+"     "+_recognitor->recognize(&face_resized));
+				//System::Console::ReadKey();
+			}
+
 			// ordenar por clases
 			/*for (int i = 0; i < cantimg-1; i++)
 			{

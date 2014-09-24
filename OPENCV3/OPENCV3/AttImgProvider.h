@@ -38,7 +38,7 @@ namespace providers
 				//Console::WriteLine(subfolder);
 				System::String^ temp = (System::String^)subfolder->Clone();
 				System::String^temp2 = temp->Substring(temp->LastIndexOf("\\")+2);
-				System::Console::WriteLine(temp2);
+				System::Console::WriteLine(temp2+"     "+temp   );
 				aclass = Convert::ToInt32(temp2)-1;
 
 				array<System::String^>^ file = System::IO::Directory::GetFiles( subfolder );
@@ -57,13 +57,13 @@ namespace providers
 						
 				        std::vector<cv::Rect> rectangles;
 						Mat* rects = adetector->detect(imagen,cantrect,rectangles);
-						System::Console::WriteLine(i);
+						//System::Console::WriteLine(i);
 
 						if(cantrect!=1)
 						{
 							// ver que se hace sui la cantidad de caras es distinto de 1
 							//g++;
-							System::Console::WriteLine("---------------------------------------{0}",cantrect);
+						//	System::Console::WriteLine("---------------------------------------{0}",i);
 						}
 						else{
 							classes.push_back(aclass);

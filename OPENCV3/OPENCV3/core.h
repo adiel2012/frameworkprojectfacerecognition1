@@ -35,7 +35,7 @@ namespace core {
 	class IFaceRecognitor
 	{
 	public:
-		virtual int  recognize(cv::Mat* img, Rectangle rectangle) = 0;
+		virtual int  recognize(cv::Mat* img) = 0;
 		virtual void  train(std::vector<cv::Mat> images,std::vector<int> labels) = 0;
 	};
 

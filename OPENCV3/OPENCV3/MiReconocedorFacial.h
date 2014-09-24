@@ -22,19 +22,22 @@ public:
         int im_height = images[0].rows;
 		std::vector<cv::Mat> resizedimages;
 
-		Mat face_resized;
+		
        // cv::resize(face, face_resized, Size(im_width, im_height), 1.0, 1.0, INTER_CUBIC);
 		for (int i = 0; i < images.size(); i++)
 		{
+			Mat face_resized;
 			cv::resize(images[i], face_resized, Size(im_width, im_height), 1.0, 1.0, INTER_CUBIC);
 			resizedimages.push_back(face_resized);
+			//imshow( "Display window", face_resized );
+			//cvShowImage("Capture", face_resized);
 		}
 
 	    model = createFisherFaceRecognizer();
 		model->train(resizedimages, labels);	
 	}
 
-	virtual  int recognize(cv::Mat* img, core::Rectangle rectangle){
+	virtual  int recognize(cv::Mat* img){
 
 		 return   model->predict(*img);
 	}

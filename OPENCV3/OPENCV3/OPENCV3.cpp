@@ -74,7 +74,7 @@ int main1()
 			//doMosaic(src_img, r->x, r->y, r->width, r->height, 20);
 		}
 		
-		imshow( "Display window", mat );
+		//imshow( "Display window", mat );
 		//cvShowImage("Capture", src_img);
 		cvReleaseImage(&src_gray);
 		c = cvWaitKey(0);
