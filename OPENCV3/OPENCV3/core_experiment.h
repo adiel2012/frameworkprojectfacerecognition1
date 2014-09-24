@@ -6,7 +6,7 @@
 #ifndef _core_experimenth
 #define _core_experimenth
 
-
+using namespace System::Xml;
 
 namespace core_experiment {
 	//--------------------------------------------------------------------------------------------------
@@ -18,6 +18,23 @@ namespace core_experiment {
 		core::IClassifiedFaceProvider* _imgprovider;
 	public :
 		virtual float* getResults() = 0;
+
+		//getters
+		core::IFaceDetector* getdetector(){
+			return _detector;
+		}
+
+		core::IFaceRecognitor* getrecognitor(){
+			return _recognitor;
+		}
+
+		core::IClassifiedFaceProvider* getimgprovider(){
+			return _imgprovider;
+		}
+		//setters
+		void setdetector(core::IFaceDetector* adetector){ _detector=adetector;  }
+		void setrecognitor(core::IFaceRecognitor* arecognitor){_recognitor=arecognitor;}
+		void setimgprovider(core::IClassifiedFaceProvider* aimgprovider){_imgprovider=aimgprovider;}
 
 
 		IExperimenter (core::IFaceDetector* adetector,  core::IFaceRecognitor* arecognitor,core::IClassifiedFaceProvider* aimgprovider){
@@ -33,7 +50,7 @@ namespace core_experiment {
 		TenfoldCrossValidation(core::IFaceDetector* adetector,  core::IFaceRecognitor* arecognitor,core::IClassifiedFaceProvider* aimgprovider):IExperimenter(adetector,arecognitor,aimgprovider){}
 		virtual float* getResults() {
 
-			
+
 
 
 			int g = 0;
@@ -52,8 +69,8 @@ namespace core_experiment {
 
 
 			int im_width = imgs[0].getIimage().cols;
-            int im_height = imgs[0].getIimage().rows;
-			
+			int im_height = imgs[0].getIimage().rows;
+
 			for (int i = 0; i < labels.size(); i++)
 			{
 				cv::Mat face_resized;
@@ -65,13 +82,13 @@ namespace core_experiment {
 			// ordenar por clases
 			/*for (int i = 0; i < cantimg-1; i++)
 			{
-				for (int j = i+1; j < cantimg; j++)
-				{
-					if(classes.at(i)>classes.at(j)){
+			for (int j = i+1; j < cantimg; j++)
+			{
+			if(classes.at(i)>classes.at(j)){
 
 
-					}
-				}
+			}
+			}
 			}*/
 
 
@@ -90,4 +107,106 @@ namespace core_experiment {
 		}
 	};
 }
+
+class dependencyInjector{
+private:
+	static char* path;
+	static dependencyInjector* instance;
+	static core_experiment::IExperimenter* experimenter;
+	dependencyInjector(){
+
+	} 
+
+	/*static core::IFaceDetector* getDetector(System::Xml::XmlTextReader reader){
+
+		return nullptr;
+	}
+
+	static core::IFaceRecognitor* getFaceRecognitor(System::Xml::XmlTextReader reader){
+
+		return nullptr;
+	}
+
+	static core::IClassifiedFaceProvider* getClassifiedFaceProvider(System::Xml::XmlTextReader reader){
+
+		return nullptr;
+	}*/
+
+	static core_experiment::IExperimenter* getExperimenter(System::Xml::XmlTextReader reader){		
+
+		return nullptr;
+	}
+
+
+public:
+
+
+	static dependencyInjector* getInstance(char* apath){
+		path=apath;
+
+		System::Xml::XmlTextReader reader ("");
+
+			/*	while (reader.Read())
+		{
+			switch (reader.NodeType)
+			{
+			case XmlNodeType::Element: // The node is an element.
+				Console::Write("<{0}", reader.Name);
+				Console::WriteLine(">");
+				break;
+			case XmlNodeType::Text: //Display the text in each element.
+				Console::WriteLine (reader.Value);
+				break;
+			case XmlNodeType::EndElement: //Display the end of the element.
+				Console::Write("</{0}", reader.Name);
+				Console::WriteLine(">");
+				break;
+			}
+		}*/
+
+		core::IFaceDetector* detector ;
+		core::IFaceRecognitor* reconocedor ;
+		core::IClassifiedFaceProvider* classifiedFaceProvider ;
+		experimenter ;
+
+
+	}
+	static core_experiment::IExperimenter* getExperimenter(){		
+
+		return nullptr;
+	}
+
+
+
+};
+
+class XmlRunner{
+private:
+	void saveResults(float* results,core_experiment::IExperimenter* experimentador){
+
+	}
+
+public:
+	void run(char* path){
+
+		dependencyInjector* injector = dependencyInjector::getInstance(path);
+
+
+
+
+
+
+		
+
+
+
+		float* results = injector->getExperimenter()->getResults();
+		saveResults(results,injector->getExperimenter());
+
+
+		delete [] results;
+
+	}
+};
+
 #endif
