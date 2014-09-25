@@ -56,20 +56,6 @@
       <FileName>core_experiment.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="dependencyInjector">
-    <Position X="9.25" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAIAAAAAAAAAACAAAAAAJAAAwAAAAAAAAAAAA=</HashCode>
-      <FileName>core_experiment.h</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="XmlRunner">
-    <Position X="11" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAgAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>core_experiment.h</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="MiDetector2">
     <Position X="6.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>

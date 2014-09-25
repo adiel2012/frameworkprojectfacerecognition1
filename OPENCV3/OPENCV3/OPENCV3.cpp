@@ -23,7 +23,7 @@
 
 int main1();
 int adielsample();
-
+int adielsample2();
 
 
 int main(array<System::String ^> ^args)
@@ -32,7 +32,7 @@ int main(array<System::String ^> ^args)
 
 
     System::Console::WriteLine(L"Hola a todos");
-	return adielsample();
+	return adielsample2();
 
    // return main1();
 }
@@ -119,6 +119,16 @@ int adielsample(){
 	delete imgprovider;
 	delete [] results;
 
+	System::Console::ReadLine();
+	return 0;
+}
+
+int adielsample2(){
+
+	core_experiment::XmlRunner* experimento = new core_experiment::XmlRunner();
+	experimento->run();
+
+	// esto debe hacerse con un inyector de dependencias
 	System::Console::ReadLine();
 	return 0;
 }

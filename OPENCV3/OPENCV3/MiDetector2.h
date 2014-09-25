@@ -9,12 +9,12 @@
 //#include <iostream>
 //#include <stdio.h>
 
-using namespace std;
-using namespace cv;
+//using namespace std;
+//using namespace cv;
 
-using namespace System;
-using namespace System::IO;
-using namespace System::Runtime::InteropServices;
+//using namespace System;
+//using namespace System::IO;
+//using namespace System::Runtime::InteropServices;
 
 class MiDetector2 : public core::IFaceDetector{
 private:
@@ -28,7 +28,7 @@ public:
 	}
 
 
-
+	virtual void  configure(System::Xml::XmlReader^ config){}
 
 
 	virtual cv::Mat* detect(cv::Mat frame, int& cant, std::vector<cv::Rect> marco){
@@ -47,28 +47,28 @@ public:
 
 		//cv::String face_cascade_name = "haarcascade_frontalface_alt.xml";
 		//cv::String eyes_cascade_name = "haarcascade_eye_tree_eyeglasses.xml";
-		CascadeClassifier face_cascade;
-		CascadeClassifier eyes_cascade;
-		string window_name = "Capture - Face detection";
-		RNG rng(12345);
-		if( !face_cascade.load( (char*)Marshal::StringToHGlobalAnsi(System::IO::Directory::GetCurrentDirectory()+"\\haarcascade_frontalface_alt.xml").ToPointer() ) ){ 
+		cv::CascadeClassifier face_cascade;
+		cv::CascadeClassifier eyes_cascade;
+		cv::string window_name = "Capture - Face detection";
+		cv::RNG rng(12345);
+		if( !face_cascade.load( (char*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(System::IO::Directory::GetCurrentDirectory()+"\\haarcascade_frontalface_alt.xml").ToPointer() ) ){ 
 			printf("--(!)Error loading\n"); };
-		if( !eyes_cascade.load( (char*)Marshal::StringToHGlobalAnsi(System::IO::Directory::GetCurrentDirectory()+"\\haarcascade_eye_tree_eyeglasses.xml").ToPointer() )  ) { 
+		if( !eyes_cascade.load( (char*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(System::IO::Directory::GetCurrentDirectory()+"\\haarcascade_eye_tree_eyeglasses.xml").ToPointer() )  ) { 
 			printf("--(!)Error loading\n"); };
 
 
-		std::vector<Rect> faces;
-		Mat frame_gray;
+		std::vector<cv::Rect> faces;
+		cv::Mat frame_gray;
 
 		cvtColor( frame, frame_gray, CV_BGR2GRAY );
-		equalizeHist( frame_gray, frame_gray );
+		cv::equalizeHist( frame_gray, frame_gray );
 
 		//-- Detect faces
-		face_cascade.detectMultiScale( frame_gray, faces, 1.1, 2, 0|CV_HAAR_SCALE_IMAGE, Size(30, 30) );
+		face_cascade.detectMultiScale( frame_gray, faces, 1.1, 2, 0|CV_HAAR_SCALE_IMAGE, cv::Size(30, 30) );
 
 		for( size_t i = 0; i < faces.size(); i++ )
 		{
-			Point center( faces[i].x + faces[i].width*0.5, faces[i].y + faces[i].height*0.5 );
+			cv::Point center( faces[i].x + faces[i].width*0.5, faces[i].y + faces[i].height*0.5 );
 
 			
 			//rectangulos.push_back(new core::Rectangle(faces[i].x,faces[i].y,faces[i].x+faces[i].width,faces[i].y+faces[i].height));
@@ -82,11 +82,11 @@ public:
 			//ellipse( frame, center, Size( faces[i].width*0.5, faces[i].height*0.5), 0, 0, 360, Scalar( 255, 0, 255 ), 4, 8, 0 );
 
 			//  FALTA ALINEAR  CON LO DE LOS OJOS
-			Mat faceROI = frame_gray( faces[i] );
-			std::vector<Rect> eyes;
+			cv::Mat faceROI = frame_gray( faces[i] );
+			std::vector<cv::Rect> eyes;
 
 			//-- In each face, detect eyes
-			eyes_cascade.detectMultiScale( faceROI, eyes, 1.1, 2, 0 |CV_HAAR_SCALE_IMAGE, Size(30, 30) );
+			eyes_cascade.detectMultiScale( faceROI, eyes, 1.1, 2, 0 |CV_HAAR_SCALE_IMAGE, cv::Size(30, 30) );
 
 
 			

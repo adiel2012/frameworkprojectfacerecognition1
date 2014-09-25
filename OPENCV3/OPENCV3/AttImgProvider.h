@@ -4,8 +4,8 @@
 #include "opencv_core.h"
 
 //#include <iostream>
-using namespace System;
-using namespace System::Runtime::InteropServices;
+//using namespace System;
+//using namespace System::Runtime::InteropServices;
 
 namespace providers
 {
@@ -16,7 +16,7 @@ namespace providers
 			int g = 0;
 		}
 
-
+		virtual void  configure(System::Xml::XmlReader^ config){}
 
 		virtual core::ClassifiedImage* getImages(int& numimages, core::IFaceDetector* adetector){
 			//char* path = "";
@@ -25,7 +25,7 @@ namespace providers
 
 			std::vector<int> classes;
 			//std::vector<core::Rectangle> faces;
-			std::vector<Mat> images;
+			std::vector<cv::Mat> images;
 
 			using namespace System;
 			using namespace System::IO;
@@ -52,11 +52,11 @@ namespace providers
 					//for (int i = 0; i < cantimg; i++)
 					//{
 
-						IplImage* imagen = cvLoadImage((char*)Marshal::StringToHGlobalAnsi(file[i]).ToPointer());
+						IplImage* imagen = cvLoadImage((char*)System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(file[i]).ToPointer());
 						int cantrect = -1;
 						
 				        std::vector<cv::Rect> rectangles;
-						Mat* rects = adetector->detect(imagen,cantrect,rectangles);
+						cv::Mat* rects = adetector->detect(imagen,cantrect,rectangles);
 						//System::Console::WriteLine(i);
 
 						if(cantrect!=1)

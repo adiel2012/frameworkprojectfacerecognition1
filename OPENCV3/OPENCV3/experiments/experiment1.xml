@@ -1,0 +1,8 @@
+<experimenter type="core_experiment::TenfoldCrossValidation" >
+	<detector type="MiDetector2" >
+    </detector>
+	<recognitor type="MiReconocedorFacial" >
+	</recognitor>
+	<faceprovider type="AttImgProvider" >
+	</faceprovider>
+</experimenter>

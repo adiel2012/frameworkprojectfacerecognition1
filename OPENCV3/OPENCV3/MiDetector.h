@@ -2,9 +2,9 @@
 #include "core_experiment.h"
 #include "opencv_core.h"
 
-using namespace System;
-			using namespace System::IO;
-			using namespace System::Runtime::InteropServices;
+//using namespace System;
+//			using namespace System::IO;
+//			using namespace System::Runtime::InteropServices;
 
 class MiDetector : public core::IFaceDetector{
 private:
@@ -14,6 +14,8 @@ public:
 
 
 	}
+
+	virtual void  configure(System::Xml::XmlReader^ config){}
 
 	virtual cv::Mat* detect(cv::Mat mat, int& cant){
 

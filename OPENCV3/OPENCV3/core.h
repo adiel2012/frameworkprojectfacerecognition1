@@ -37,11 +37,13 @@ namespace core {
 	public:
 		virtual int  recognize(cv::Mat* img) = 0;
 		virtual void  train(std::vector<cv::Mat> images,std::vector<int> labels) = 0;
+		virtual void  configure(System::Xml::XmlReader^ config) = 0;
 	};
 
 	class IFaceDetector{
 	public:
 		virtual cv::Mat*  detect(cv::Mat img,int& cant, std::vector<cv::Rect> rectangles) = 0;
+		virtual void  configure(System::Xml::XmlReader^ config) = 0;
 	};
 
 	class ClassifiedImage{
@@ -64,6 +66,7 @@ namespace core {
 		//ClassifiedImage* getImages()  const;
 		IClassifiedFaceProvider(){}
 		virtual ClassifiedImage*  getImages(int& numimages, core::IFaceDetector* adetector) = 0;
+		virtual void  configure(System::Xml::XmlReader^ config) = 0;
 		//virtual int funcion1() ;
 	};
 
