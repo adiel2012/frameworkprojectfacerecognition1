@@ -13,7 +13,7 @@
 
 namespace core {
 
-	class Rectangle{
+	/*class Rectangle{
 	private:
 		int x1,y1;
 		int x2,y2;
@@ -31,7 +31,7 @@ namespace core {
 		void setY2(int ay2){ y2=ay2;}
 
 
-	};
+	};*/
 	class IFaceRecognitor
 	{
 	public:
@@ -57,10 +57,7 @@ namespace core {
 		ClassifiedImage(){};
 		ClassifiedImage(cv::Mat aimg,int a_class){img=aimg;_class=a_class;}
 	};
-
-
-
-
+	
 	class IClassifiedFaceProvider{
 	public:
 		//ClassifiedImage* getImages()  const;
@@ -69,11 +66,7 @@ namespace core {
 		virtual void  configure(System::Xml::XmlReader^ config) = 0;
 		//virtual int funcion1() ;
 	};
-
-
-
-
-
+	
 	class VideoDetector{
 	private:
 
@@ -141,10 +134,7 @@ namespace core {
 		}
 
 	};
-
-
-
-
+	
 }
 
 #endif

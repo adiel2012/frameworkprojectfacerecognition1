@@ -2,12 +2,12 @@
 #include "core_experiment.h"
 #include "opencv_core.h"
 
-
+namespace added_namespace{
 class MiReconocedorFacial : public core::IFaceRecognitor{
 private:
 	cv::Ptr<cv::FaceRecognizer> model;
 public:
-	MiReconocedorFacial(){
+	MiReconocedorFacial():core::IFaceRecognitor(){
 		im_width = 77;
         im_height = 77;
 
@@ -46,3 +46,5 @@ public:
 
 
 };
+
+}

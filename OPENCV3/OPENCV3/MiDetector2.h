@@ -16,13 +16,15 @@
 //using namespace System::IO;
 //using namespace System::Runtime::InteropServices;
 
+namespace added_namespace{
+
 class MiDetector2 : public core::IFaceDetector{
 private:
 
 
 
 public:
-	MiDetector2(){
+	MiDetector2():core::IFaceDetector(){
 
 
 	}
@@ -129,3 +131,5 @@ public:
 		return res;
 	}
 };
+
+}

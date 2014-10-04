@@ -1,8 +1,8 @@
-<experimenter type="core_experiment::TenfoldCrossValidation" >
-	<detector type="MiDetector2" >
+<experimenter type="core_experiment.TenfoldCrossValidation" >
+	<detector type="added_namespace.MiDetector2" >
     </detector>
-	<recognitor type="MiReconocedorFacial" >
+	<recognitor type="added_namespace.MiReconocedorFacial" >
 	</recognitor>
-	<faceprovider type="AttImgProvider" >
+	<faceprovider type="providers.AttImgProvider" >
 	</faceprovider>
 </experimenter>
