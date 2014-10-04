@@ -85,8 +85,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="allcore.h" />
-    <ClInclude Include="config.h" />
     <ClInclude Include="core.h" />
+    <ClInclude Include="core_config.h" />
     <ClInclude Include="core_experiment.h" />
     <ClInclude Include="MiDetector2.h" />
     <ClInclude Include="MiReconocedorFacial.h" />

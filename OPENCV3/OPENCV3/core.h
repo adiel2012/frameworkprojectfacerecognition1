@@ -11,39 +11,44 @@
 
 
 
+
 namespace core {
+	class IConfigurable{
+	public:
+		virtual void  configure(System::Xml::XmlReader^ config) = 0;
+	};
 
 	/*class Rectangle{
 	private:
-		int x1,y1;
-		int x2,y2;
+	int x1,y1;
+	int x2,y2;
 	public:
-		int getX1(){return x1;};
-		int getY1(){return y1;};
-		void setX1(int ax1){ x1=ax1;}
-		void setY1(int ay1){ y1=ay1;}
-		Rectangle(int ax1, int ay1, int ax2, int ay2){x1=ax1; y1=ay1;x2=ax2; y2=ay2;}
-		Rectangle(){}
+	int getX1(){return x1;};
+	int getY1(){return y1;};
+	void setX1(int ax1){ x1=ax1;}
+	void setY1(int ay1){ y1=ay1;}
+	Rectangle(int ax1, int ay1, int ax2, int ay2){x1=ax1; y1=ay1;x2=ax2; y2=ay2;}
+	Rectangle(){}
 
-		int getX2(){return x2;};
-		int getY2(){return y2;};
-		void setX2(int ax2){ x2=ax2;}
-		void setY2(int ay2){ y2=ay2;}
+	int getX2(){return x2;};
+	int getY2(){return y2;};
+	void setX2(int ax2){ x2=ax2;}
+	void setY2(int ay2){ y2=ay2;}
 
 
 	};*/
-	class IFaceRecognitor
+	class IFaceRecognitor: public IConfigurable
 	{
 	public:
 		virtual int  recognize(cv::Mat* img) = 0;
 		virtual void  train(std::vector<cv::Mat> images,std::vector<int> labels) = 0;
-		virtual void  configure(System::Xml::XmlReader^ config) = 0;
+		//virtual void  configure(System::Xml::XmlReader^ config) = 0;
 	};
 
-	class IFaceDetector{
+	class IFaceDetector: public IConfigurable{
 	public:
 		virtual cv::Mat*  detect(cv::Mat img,int& cant, std::vector<cv::Rect> rectangles) = 0;
-		virtual void  configure(System::Xml::XmlReader^ config) = 0;
+		//virtual void  configure(System::Xml::XmlReader^ config) = 0;
 	};
 
 	class ClassifiedImage{
@@ -57,16 +62,16 @@ namespace core {
 		ClassifiedImage(){};
 		ClassifiedImage(cv::Mat aimg,int a_class){img=aimg;_class=a_class;}
 	};
-	
-	class IClassifiedFaceProvider{
+
+	class IClassifiedFaceProvider: public IConfigurable{
 	public:
 		//ClassifiedImage* getImages()  const;
 		IClassifiedFaceProvider(){}
 		virtual ClassifiedImage*  getImages(int& numimages, core::IFaceDetector* adetector) = 0;
-		virtual void  configure(System::Xml::XmlReader^ config) = 0;
+		//virtual void  configure(System::Xml::XmlReader^ config) = 0;
 		//virtual int funcion1() ;
 	};
-	
+
 	class VideoDetector{
 	private:
 
@@ -127,14 +132,14 @@ namespace core {
 				imshow("face_recognizer", original);
 			}
 			// Show the result:
-			
+
 			// And display it:
 			//char key = (char) waitKey(20);
 
 		}
 
 	};
-	
+
 }
 
 #endif

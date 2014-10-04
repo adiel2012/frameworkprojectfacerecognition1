@@ -54,7 +54,7 @@
     <ClInclude Include="MiDetector2.h">
       <Filter>Archivos de encabezado\adiel</Filter>
     </ClInclude>
-    <ClInclude Include="config.h">
+    <ClInclude Include="core_config.h">
       <Filter>Archivos de encabezado\core</Filter>
     </ClInclude>
   </ItemGroup>

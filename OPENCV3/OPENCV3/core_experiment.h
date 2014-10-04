@@ -1,13 +1,26 @@
 #ifndef _coreh
 #include "core.h"
+//#include "core_config.h"
 #endif
 
 
 #ifndef _core_experimenth
 #define _core_experimenth
 
+
 #include <time.h>
 //using namespace System::Xml;
+
+
+//   incluir los .h
+
+#include "allcore.h"
+#include "MiDetector.h"
+#include "MiDetector2.h"
+#include "MiReconocedorFacial.h"
+#include "AttImgProvider.h"
+
+
 
 namespace core_experiment {
 	//--------------------------------------------------------------------------------------------------
@@ -111,6 +124,8 @@ namespace core_experiment {
 
 			return nullptr;
 		}
+
+		HoldOutCrossValidation(){}
 	};
 
 
@@ -125,64 +140,68 @@ namespace core_experiment {
 		dependencyInjector(System::String^ apath ){
 			//	if(instance== nullptr)
 			//		instance= new dependencyInjector();
-			
+
 
 			System::Xml::XmlReader^  reader  =  System::Xml::XmlReader::Create(apath);
 
 			reader->MoveToContent();
 			System::String^ experimentername = reader->GetAttribute("type");
 
-			
-			System::Object^ itemexperimentername = System::Activator::CreateInstance(System::Type::GetType(experimentername));
+
+			//System::Object^ itemexperimentername = System::Activator::CreateInstance(System::Type::GetType(experimentername));
 
 			reader->ReadToFollowing("detector");
 			reader->MoveToContent();
 			System::Xml::XmlReader^ xmldetect = reader->ReadSubtree();
 			xmldetect->MoveToContent();
 			//System::Console::WriteLine(xmldetect->GetAttribute("type"));
-			System::Object^ itemxmldetect = System::Activator::CreateInstance(System::Type::GetType(xmldetect->GetAttribute("type") ));
+			//System::Object^ itemxmldetect = System::Activator::CreateInstance(System::Type::GetType(xmldetect->GetAttribute("type") ));
 
 			reader->ReadToFollowing("recognitor");
 			reader->MoveToContent();
 			System::Xml::XmlReader^ xmlrecognitor = reader->ReadSubtree();
 			xmlrecognitor->MoveToContent();
 			//System::Console::WriteLine(xmlrecognitor->GetAttribute("type"));
-			System::Object^ itemxmlrecognitor = System::Activator::CreateInstance(System::Type::GetType(xmlrecognitor->GetAttribute("type")));
+			//System::Object^ itemxmlrecognitor = System::Activator::CreateInstance(System::Type::GetType(xmlrecognitor->GetAttribute("type")));
 
 			reader->ReadToFollowing("faceprovider");
 			reader->MoveToContent();
 			System::Xml::XmlReader^ xmlfaceprovider = reader->ReadSubtree();
 			xmlfaceprovider->MoveToContent();
 			//System::Console::WriteLine(xmlfaceprovider->GetAttribute("type"));
-			System::Object^ itemxmlfaceprovider = System::Activator::CreateInstance(System::Type::GetType(xmlfaceprovider->GetAttribute("type")));
+			//System::Object^ itemxmlfaceprovider = System::Activator::CreateInstance(System::Type::GetType(xmlfaceprovider->GetAttribute("type")));
 
 
 
-		
 
-			System::Runtime::InteropServices::GCHandle handle = System::Runtime::InteropServices::GCHandle::Alloc(itemxmlrecognitor);
+
+			/*	System::Runtime::InteropServices::GCHandle handle = System::Runtime::InteropServices::GCHandle::Alloc(itemxmlrecognitor);
 			System::IntPtr pointer = System::Runtime::InteropServices::GCHandle::ToIntPtr(handle);			
 			core::IFaceRecognitor* reconocedor = (core::IFaceRecognitor*)(pointer.ToPointer());            
 
 			handle = System::Runtime::InteropServices::GCHandle::Alloc(itemxmlfaceprovider);
 			pointer = System::Runtime::InteropServices::GCHandle::ToIntPtr(handle);			
 			core::IClassifiedFaceProvider* classifiedFaceProvider = (core::IClassifiedFaceProvider*)(pointer.ToPointer());
-						
+
 			handle = System::Runtime::InteropServices::GCHandle::Alloc(itemxmldetect);
 			pointer = System::Runtime::InteropServices::GCHandle::ToIntPtr(handle);			
 			core::IFaceDetector* detector = (core::IFaceDetector*)(pointer.ToPointer());
-						
+
 			handle = System::Runtime::InteropServices::GCHandle::Alloc(itemexperimentername);
 			pointer = System::Runtime::InteropServices::GCHandle::ToIntPtr(handle);			
-			core_experiment::IExperimenter* experimeto = (core_experiment::IExperimenter*)(pointer.ToPointer());
+			core_experiment::IExperimenter* experimeto = (core_experiment::IExperimenter*)(pointer.ToPointer());*/
+
+			using namespace System::Runtime::InteropServices;
+
+			//	char* str2 =   (char*)(void*) System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(xmldetect->GetAttribute("type"))  ;
+
+			core::IFaceDetector* detector = (core::IFaceDetector*) instanceprovider((char*)(void*) System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(xmldetect->GetAttribute("type")));
+			core::IFaceRecognitor* reconocedor  = (core::IFaceRecognitor*) instanceprovider((char*)(void*) System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(xmlrecognitor->GetAttribute("type")));
+			core::IClassifiedFaceProvider* classifiedFaceProvider  = (core::IClassifiedFaceProvider*) instanceprovider((char*)(void*) System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(xmlfaceprovider->GetAttribute("type")));
+			core_experiment::IExperimenter* experimeto  = (core_experiment::IExperimenter*) instanceprovider((char*)(void*) System::Runtime::InteropServices::Marshal::StringToHGlobalAnsi(experimentername));
 
 
 
-
-		/*	core::IFaceDetector* detector ;
-			core::IFaceRecognitor* reconocedor ;
-			core::IClassifiedFaceProvider* classifiedFaceProvider ;
-			core_experiment::IExperimenter* experimeto ;*/
 
 			//FALTA CREAR   LAS INSTANCIAS
 
@@ -202,11 +221,53 @@ namespace core_experiment {
 			//return nullptr;
 
 		}
+
+
+		void* instanceprovider(char* tipo){
+			void* result = nullptr;
+			if(strcmp(tipo,"core_experiment.TenfoldCrossValidation")==0){
+				result = new TenfoldCrossValidation();
+			}
+			else if(strcmp(tipo,"core_experiment.HoldOutCrossValidation")==0){
+				result = new HoldOutCrossValidation();
+			}
+
+
+			// put the detectors
+			else if(strcmp(tipo,"added_namespace.MiDetector2")==0){
+				result = new added_namespace::MiDetector2(); 
+			}
+
+
+
+			// put the rocognizers
+			else if(strcmp(tipo,"added_namespace.MiReconocedorFacial")==0){
+				result = new added_namespace:: MiReconocedorFacial(); 
+			}
+
+
+
+
+
+			//put the provider
+			else if(strcmp(tipo,"providers.AttImgProvider")==0){
+				result = new providers:: AttImgProvider(); 
+			}
+
+			//if(typeid(result)==typeid(core::IConfigurable*))
+
+			return result;
+		}
+
+
+
 		~dependencyInjector( ){}
 
 		core_experiment::IExperimenter* getExperimenter(){
 			return experimenter;
 		}
+
+
 	};
 
 	class XmlRunner{
@@ -225,7 +286,7 @@ namespace core_experiment {
 			System::IO::FileInfo finfo(path);
 			System::String^  aname = finfo.Name;
 
-			
+
 
 			System::String^ moment= "_"+s.tm_year+"_"+(s.tm_mon+1)+"_"+s.tm_mday+"_"+   s.tm_hour+"_"+s.tm_min+"_"+s.tm_sec;
 			System::Console::WriteLine(System::IO::Directory::GetCurrentDirectory()+"\\experimentsresults\\"+aname->Substring(0,aname->LastIndexOf("."))+moment+".txt") ;
@@ -245,7 +306,7 @@ namespace core_experiment {
 			sw->WriteLine("{0},{1}",sumatrainning/cant,sumageneralization/cant);
 			sw->Close();
 
-			
+
 
 		}
 
@@ -409,5 +470,10 @@ run(file);
 
 };
 */
+
+
+
+
+
 
 #endif
