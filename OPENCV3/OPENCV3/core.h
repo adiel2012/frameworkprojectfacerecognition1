@@ -9,7 +9,8 @@
 #include <opencv/highgui.h>
 #include <opencv/ml.h>
 
-
+#include <iostream>
+#include <stdio.h>
 
 
 namespace core {
